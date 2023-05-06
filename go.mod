@@ -1,3 +1,3 @@
-module github.com/duosonic62/go-tips
+module go-tips
 
 go 1.17
