@@ -10,7 +10,10 @@ import (
 func main() {
 	var wg sync.WaitGroup
 	wg.Add(1)
+	// cancel
 	ctx, cancel := context.WithCancel(context.Background())
+	// timeout
+	// ctx, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
 	go f(ctx, &wg)
 
 	time.Sleep(10 * time.Second)
