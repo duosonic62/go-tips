@@ -25,6 +25,17 @@ func main() {
 		WithLogger(logger),
 		WithTimeout(time.Minute),
 	)
+
+	// easy way to set config
+	//easySrv := EasyNew(
+	//	"localhost",
+	//	8888,
+	//	Config{
+	//		Timeout: time.Minute,
+	//		Logger:  logger,
+	//	},
+	//)
+
 	if err := svr.Start(); err != nil {
 		log.Fatal(err)
 	}
@@ -62,6 +73,20 @@ func New(host string, port int, options ...Option) *Server {
 	}
 
 	return srv
+}
+
+type Config struct {
+	Timeout time.Duration
+	Logger  *log.Logger
+}
+
+func EasyNew(host string, port int, config Config) *Server {
+	return &Server{
+		host:    host,
+		port:    port,
+		timeout: config.Timeout,
+		logger:  config.Logger,
+	}
 }
 
 func (s *Server) Start() error {
