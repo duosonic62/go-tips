@@ -28,3 +28,18 @@ func main() {
 		}
 	}
 }
+
+func main2() {
+	ch := generator2("Hi")
+	timeout := time.After(5 * time.Second)
+	for i := 0; i < 10; i++ {
+		select {
+		case s := <-ch:
+			fmt.Println(s)
+		case <-timeout:
+			fmt.Println("Time out!")
+			return
+		}
+	}
+	}
+}
