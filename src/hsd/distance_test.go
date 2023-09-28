@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+	"os"
 	"runtime"
 	"testing"
 )
@@ -44,4 +46,14 @@ func TestStringDistance_Skip(t *testing.T) {
 	if testing.Short() {
 		t.SkipNow()
 	}
+}
+
+func TestMain(m *testing.M) {
+	// setup
+	log.Println("Before")
+	ret := m.Run()
+
+	// teardown
+	log.Println("After")
+	os.Exit(ret)
 }
