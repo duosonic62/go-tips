@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"runtime"
+	"testing"
+)
 
 func TestStringDistance(t *testing.T) {
 	got := StringDistance("foo", "foh")
@@ -29,5 +32,16 @@ func TestStringDistance_TableDriven(t *testing.T) {
 		if got != tc.want {
 			t.Fatalf("%s expected: %v, got: %v", tc.name, tc.want, got)
 		}
+	}
+}
+
+func TestStringDistance_Skip(t *testing.T) {
+	if runtime.GOOS == "windows" {
+		t.Skipf("this test is skipped")
+	}
+
+	// this test is skipped if it runs with short option like `go test -short`
+	if testing.Short() {
+		t.SkipNow()
 	}
 }
