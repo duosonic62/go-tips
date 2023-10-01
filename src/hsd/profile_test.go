@@ -18,3 +18,11 @@ func TestCreateProfile(t *testing.T) {
 		t.Fatalf("expected: %v, got: %v", want, got)
 	}
 }
+
+func TestCreateProfile2(t *testing.T) {
+	t.Setenv("DATABASE_URL", "127.0.0.1")
+	_, err := CreateProfile("test")
+	if err != nil {
+		t.Fatal(err)
+	}
+}
