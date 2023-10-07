@@ -11,3 +11,16 @@ func BenchmarkDoSomething(b *testing.B) {
 		DoSomething()
 	}
 }
+
+func BenchmarkMakeSomethingBad(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_ = MakeSomethingBad(1000)
+	}
+}
+func BenchmarkMakeSomethingGood(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_ = MakeSomethingGood(1000)
+	}
+}
