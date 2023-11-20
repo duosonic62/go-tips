@@ -14,6 +14,26 @@ func main() {
 			Usage:   "Load configuration from `FILE`",
 		},
 	}
+	app.Commands = []*cli.Command{
+		{
+			Name:  "list",
+			Usage: "List students",
+			Flags: []cli.Flag{
+				&cli.BoolFlag{
+					Name:  "json",
+					Usage: "Output as JSON",
+					Value: false,
+				},
+			},
+			Action: func(c *cli.Context) error {
+				if c.Bool("json") {
+					// do something
+					return nil
+				}
+				return nil
+			},
+		},
+	}
 
 	app.Name = "score"
 	app.Usage = "Show student's score"
