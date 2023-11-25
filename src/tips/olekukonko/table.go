@@ -16,6 +16,8 @@ func main() {
 
 	table := tablewriter.NewWriter(os.Stdout)
 	table.SetHeader([]string{"Name", "Sign", "Rating"})
+	table.SetColumnAlignment([]int{tablewriter.ALIGN_LEFT, tablewriter.ALIGN_DEFAULT, tablewriter.ALIGN_RIGHT})
+	table.SetColumnColor(tablewriter.Colors{tablewriter.FgRedColor}, tablewriter.Colors{tablewriter.FgBlueColor}, tablewriter.Colors{tablewriter.FgGreenColor})
 
 	for _, v := range data {
 		table.Append(v)
